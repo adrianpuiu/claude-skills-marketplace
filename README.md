@@ -29,32 +29,6 @@ The skill generates three essential documents:
 /plugin install project-planner-skill@claude-skills-marketplace
 ```
 
-### Generate Documents Using the Script
-
-```bash
-# Basic usage
-python scripts/generate_project_docs.py "My Project Name"
-
-# Specify project type
-python scripts/generate_project_docs.py "Trading Bot" --type web-app
-
-# Custom features and components
-python scripts/generate_project_docs.py "E-commerce Site" \
-  --features "user authentication" "product catalog" "shopping cart" \
-  --components "Auth Service" "Product Service" "Order Service" \
-  --output ./docs
-```
-
-### Validate Your Documents
-
-```bash
-# Validate all documents
-python scripts/validate_documents.py \
-  --requirements requirements.md \
-  --design design.md \
-  --tasks tasks.md
-```
-
 ## Document Types
 
 ### Requirements Document
