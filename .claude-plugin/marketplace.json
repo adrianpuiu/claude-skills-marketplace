@@ -10,7 +10,7 @@
       "name": "project-planner-skill",
       "source": {
         "source": "github",
-        "repo": "your-username/project-planner-skill"
+        "repo": "adrianpuiu/project-planner-skill"
       },
       "description": "A comprehensive project planning skill for Claude Code that helps create, organize, and track projects with task management, timeline planning, and progress monitoring features.",
       "version": "1.0.0",

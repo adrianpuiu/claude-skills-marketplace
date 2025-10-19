@@ -18,7 +18,7 @@ A comprehensive project planning skill for Claude Code that helps create, organi
 To use this marketplace in Claude Code:
 
 ```bash
-/plugin marketplace add your-username/claude-skills-marketplace
+/plugin marketplace add adrianpuiu/claude-skills-marketplace
 ```
 
 To install plugins from this marketplace:
