@@ -1,0 +1,21 @@
+{
+  "name": "claude-skills-marketplace",
+  "owner": {
+    "name": "Claude Skills Marketplace",
+    "email": "maintainer@example.com"
+  },
+  "description": " comprehensive project planning skill for Claude Code that helps create, organize, and track projects with task management, timeline planning, and progress monitoring features.",
+  "plugins": [
+    {
+      "name": "project-planner-skill",
+      "source": {
+        "source": "github",
+        "repo": "your-username/project-planner-skill"
+      },
+      "description": "A comprehensive project planning skill for Claude Code that helps create, organize, and track projects with task management, timeline planning, and progress monitoring features.",
+      "version": "1.0.0",
+      "tags": ["project-management", "planning", "productivity", "tasks"],
+      "author": "Your Name"
+    }
+  ]
+}
