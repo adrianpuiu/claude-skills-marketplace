@@ -21,6 +21,13 @@ The skill generates three essential documents:
 **Why it works:** Setting clear roles, responsibilities, and deliverables upfront dramatically improves output quality. By explicitly defining system components, data flows, and integration points before diving into details, the documentation becomes comprehensive and actionable.
 
 ## Quick Start
+### Claude install
+
+```bash
+/plugin marketplace add adrianpuiu/claude-skills-marketplace
+
+/plugin install project-planner-skill@claude-skills-marketplace
+```
 
 ### Generate Documents Using the Script
 
