@@ -52,7 +52,7 @@ class ProjectDocumentGenerator:
         return template
     
     def generate_design_template(self, components: List[str]) -> str:
-        """Generate design document template"""
+        """Generate design document template with comprehensive architecture"""
         
         template = f"""# Design Document
 
@@ -60,9 +60,22 @@ class ProjectDocumentGenerator:
 
 The {self.project_name} system is built as a [ARCHITECTURE PATTERN] with [KEY COMPONENTS]. The design prioritizes [KEY PRIORITIES].
 
-## Architecture
+## System Architecture
 
-### High-Level Architecture
+### Component Map
+
+| Component ID | Name | Type | Responsibility | Interfaces With |
+|-------------|------|------|----------------|-----------------|
+| COMP-1 | Frontend | UI | User interface and interaction | COMP-2 |
+| COMP-2 | API Gateway | Service | Request routing and authentication | COMP-3, COMP-4 |"""
+        
+        for i, component in enumerate(components, 3):
+            template += f"""
+| COMP-{i} | {component} | Service | [Responsibility] | [Components] |"""
+        
+        template += """
+
+### High-Level Architecture Diagram
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -93,6 +106,76 @@ The {self.project_name} system is built as a [ARCHITECTURE PATTERN] with [KEY CO
 │  └──────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+## Data Flow Specifications
+
+### Primary Data Flows
+
+#### 1. User Authentication Flow
+
+```
+1. User → Frontend: Login credentials
+2. Frontend → API Gateway: Encrypted credentials
+3. API Gateway → Auth Service: Validation request
+4. Auth Service → User Database: Query user record
+5. User Database → Auth Service: User data
+6. Auth Service → API Gateway: JWT token
+7. API Gateway → Frontend: Auth response with token
+```
+
+**Data Transformations:**
+- Step 2: Credentials encrypted with HTTPS
+- Step 3: Rate limiting applied
+- Step 6: JWT token generated with claims
+
+[Add other critical data flows]
+
+## Integration Points
+
+### Internal Integration Points
+
+| Source | Target | Protocol | Data Format | Purpose |
+|--------|--------|----------|-------------|---------|
+| Frontend | API Gateway | HTTPS/REST | JSON | API calls |
+| API Gateway | Services | HTTP/gRPC | JSON/Protobuf | Service calls |
+| Services | Database | TCP | SQL | Data persistence |
+
+### External Integration Points
+
+#### [External Service Name]
+
+**Type:** REST API / Database / Message Queue
+**Purpose:** [What this integration provides]
+**Endpoint:** [URL pattern or connection details]
+**Authentication:** [OAuth2, API Key, etc.]
+**Rate Limits:** [Any constraints]
+
+**Interface Contract:**
+```
+POST /api/endpoint
+Headers: { "Authorization": "Bearer token" }
+Body: { "field": "value" }
+Response: { "result": "value" }
+```
+
+**Error Handling:**
+- Retry strategy: Exponential backoff with jitter
+- Circuit breaker: Opens after 5 consecutive failures
+- Fallback: [Degraded functionality or cached response]
+
+## System Boundaries
+
+### In Scope
+- [Core functionality included]
+- [Features to be implemented]
+
+### Out of Scope  
+- [Features not included]
+- [Delegated to external systems]
+
+### Assumptions
+- [External services available]
+- [Infrastructure provided]
 
 ## Components and Interfaces
 """
@@ -247,13 +330,46 @@ NODE_ENV=production
         return template
     
     def generate_tasks_template(self, phases: List[Dict]) -> str:
-        """Generate implementation plan template"""
+        """Generate implementation plan template with boundaries and deliverables"""
         
         template = f"""# Implementation Plan
 
 Generated: {self.timestamp}
 Project: {self.project_name}
 Type: {self.project_type}
+
+## Project Boundaries
+
+### Must Have (MVP)
+- [Core feature 1]
+- [Core feature 2]
+- [Core feature 3]
+
+### Nice to Have (Enhancements)
+- [Enhancement feature 1]
+- [Enhancement feature 2]
+
+### Out of Scope
+- [Explicitly excluded feature 1]
+- [Deferred to future phase]
+
+### Technical Constraints
+- [Framework limitations]
+- [Resource constraints]
+
+## Deliverables by Phase
+
+| Phase | Deliverables | Success Criteria |
+|-------|-------------|------------------|
+| 1. Infrastructure | Working development environment | All developers can run locally |
+| 2. Data Layer | Database schema, models | CRUD operations functional |
+| 3. Business Logic | Core services implemented | All requirements fulfilled |
+| 4. API Layer | REST/GraphQL endpoints | API tests passing |
+| 5. Frontend | User interface | End-to-end workflows complete |
+| 6. Testing | Test coverage >80% | All tests passing |
+| 7. Deployment | Production environment | System accessible and stable |
+
+## Task Breakdown
 
 """
         
