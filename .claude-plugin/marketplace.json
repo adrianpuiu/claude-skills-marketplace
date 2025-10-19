@@ -1,22 +1,13 @@
 {
-  "name": "claude-skills-marketplace",
+  "name": "George A Puiu - Claude Skills Marketplace",
+  "id": "laude-skills-marketplace",
   "owner": {
-    "name": "Claude Skills Marketplace",
-    "email": "maintainer@example.com"
+    "name": "George A Puiu",
+    "email": "puiu.adrian@gmail.com"
   },
   "metadata": {
     "description": "Claude Skills Marketplace - A centralized repository for Claude Code skills and plugins",
     "version": "1.0.0"
   },
-  "plugins": [
-    {
-      "name": "project-planner-skill",
-      "description": "A comprehensive project planning skill for Claude Code that helps create, organize, and track projects with task management, timeline planning, and progress monitoring features.",
-      "source": {
-        "source": "github",
-        "repo": "adrianpuiu/project-planner-skill"
-      },
-      "strict": false
-    }
-  ]
+  "plugins": []
 }
