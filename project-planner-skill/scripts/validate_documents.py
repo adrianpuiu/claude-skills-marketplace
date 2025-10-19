@@ -66,7 +66,9 @@ class DocumentValidator:
         # Check required sections
         required_sections = [
             "## Overview",
-            "## Architecture",
+            "## System Architecture",
+            "## Data Flow",
+            "## Integration Points",
             "## Components",
             "## Data Models",
             "## Deployment"
@@ -75,6 +77,22 @@ class DocumentValidator:
         for section in required_sections:
             if section not in content:
                 errors.append(f"Missing required section: {section}")
+        
+        # Check for component map
+        if "Component Map" not in content and "| Component ID |" not in content:
+            errors.append("Missing Component Map table")
+        
+        # Check for data flow specifications
+        if "Data Flow" not in content:
+            errors.append("Missing Data Flow specifications")
+        
+        # Check for integration points
+        if "Integration Points" not in content:
+            errors.append("Missing Integration Points section")
+        
+        # Check for system boundaries
+        if "System Boundaries" not in content and "In Scope" not in content:
+            warnings.append("Missing System Boundaries definition")
         
         # Check for architecture diagram
         if "```" not in content and "┌" not in content:
@@ -103,6 +121,24 @@ class DocumentValidator:
         errors = []
         warnings = []
         
+        # Check for project boundaries
+        if "## Project Boundaries" not in content:
+            errors.append("Missing Project Boundaries section")
+        
+        if "Must Have" not in content:
+            warnings.append("Missing 'Must Have' scope definition")
+        
+        if "Out of Scope" not in content:
+            warnings.append("Missing 'Out of Scope' definition")
+        
+        # Check for deliverables
+        if "## Deliverables" not in content and "Deliverables by Phase" not in content:
+            warnings.append("Missing Deliverables section")
+        
+        # Check for success criteria
+        if "Success Criteria" not in content:
+            warnings.append("Missing Success Criteria for deliverables")
+        
         # Check for task structure
         phase_pattern = r"- \[[ x]\] \d+\."
         phases = re.findall(phase_pattern, content)
@@ -129,6 +165,13 @@ class DocumentValidator:
             warnings.append("No requirement tracing found in tasks")
         elif len(req_traces) < len(tasks) / 2:
             warnings.append(f"Only {len(req_traces)} tasks have requirement tracing")
+        
+        # Check for component involvement
+        comp_pattern = r"_Components:.*COMP-\d+"
+        comp_traces = re.findall(comp_pattern, content)
+        
+        if len(comp_traces) == 0:
+            warnings.append("No component mapping found in tasks")
         
         # Check for dependencies
         dep_pattern = r"_Dependencies:"
