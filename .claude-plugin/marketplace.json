@@ -9,5 +9,19 @@
     "description": "Claude Skills Marketplace - A centralized repository for Claude Code skills and plugins",
     "version": "1.0.0"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "project-planner-skill",
+      "source": "./project-planner-skill",
+      "description": "Comprehensive project planning and documentation generator for software projects. Creates structured requirements documents, system design documents, and task breakdown plans with implementation tracking.",
+      "version": "1.0.0",
+      "author": {
+        "name": "George A Puiu",
+        "email": "puiu.adrian@gmail.com"
+      },
+      "keywords": ["project-planning", "documentation", "requirements", "design", "implementation"],
+      "category": "productivity",
+      "strict": false
+    }
+  ]
 }
