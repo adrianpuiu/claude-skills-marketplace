@@ -1,16 +1,24 @@
 # Project Planner Skill
 
-A comprehensive skill for generating project planning documents that serve as blueprints for AI-assisted software development.
+A comprehensive skill that establishes Claude as a **Project Architect** to generate detailed planning documents that serve as blueprints for AI-assisted software development.
 
 ## What This Skill Does
 
-This skill helps generate three essential documents for any software project:
+This skill transforms Claude into a System Architect who creates comprehensive project documentation by:
 
-1. **Requirements Document** - User stories with testable acceptance criteria
-2. **Design Document** - Technical architecture and component specifications
-3. **Implementation Plan** - Hierarchical task breakdown with requirement tracing
+1. **Defining the complete system architecture upfront** - All components, data flows, and integration points
+2. **Setting clear project boundaries** - What's in scope, out of scope, and key constraints
+3. **Creating traceable documentation** - Requirements → Design → Implementation tasks
 
-These documents are specifically designed to be used as input for AI agents that will implement the project.
+The skill generates three essential documents:
+
+1. **Requirements Document** - User stories with testable acceptance criteria and traceable IDs
+2. **Design Document** - Complete system architecture with component maps, data flows, and integration specifications
+3. **Implementation Plan** - Hierarchical task breakdown with requirement tracing and clear deliverables
+
+## The Architect Approach
+
+**Why it works:** Setting clear roles, responsibilities, and deliverables upfront dramatically improves output quality. By explicitly defining system components, data flows, and integration points before diving into details, the documentation becomes comprehensive and actionable.
 
 ## Quick Start
 
