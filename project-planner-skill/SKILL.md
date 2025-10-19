@@ -14,22 +14,95 @@ When a user wants to start a new project, generate three core documents:
 2. **Design Document** - Technical architecture and component specifications  
 3. **Implementation Plan** - Hierarchical task breakdown with requirement tracing
 
+## Why Explicit Architectural Planning Works
+
+Setting clear roles, responsibilities, and deliverables upfront dramatically improves project outcomes:
+
+### Benefits of Upfront Definition
+
+1. **Component Clarity** - Defining all system components first prevents scope creep and ensures complete coverage
+2. **Data Flow Visibility** - Mapping data movement early reveals integration complexities and performance bottlenecks
+3. **Integration Planning** - Identifying all touchpoints upfront prevents surprise dependencies during implementation
+4. **Clear Boundaries** - Explicitly stating what's in/out of scope focuses effort and prevents feature drift
+5. **Measurable Success** - Specific goals and constraints enable objective progress tracking
+
+### The Architect Mindset
+
+When acting as a **Project Architect**, approach planning with:
+- **Systems Thinking** - See the whole before diving into parts
+- **Interface-First Design** - Define contracts between components before internals
+- **Traceability Focus** - Every requirement maps to design elements and tasks
+- **Constraint Awareness** - Acknowledge limitations upfront to guide decisions
+- **Deliverable Orientation** - Know exactly what artifacts you're producing
+
 ## Document Generation Workflow
 
-### 1. Initial Project Understanding
+### 1. Project Architect Role Definition
 
-Before generating documents, gather key information:
+When starting a project, explicitly establish Claude as the **Project Architect** with clear responsibilities:
+
+**Role:** System Architect and Planning Specialist
+**Responsibilities:**
+- Define complete system architecture with all components
+- Map data flow between system elements
+- Identify all integration points and interfaces
+- Establish clear project boundaries and constraints
+- Create traceable requirements to implementation tasks
+
+### 2. Initial Project Understanding
+
+Before generating documents, gather key information and architectural elements:
 
 ```
-Required Information:
+Required Project Information:
 - Project name and purpose
 - Target users (single-user local, multi-tenant SaaS, etc.)
 - Core functionality (3-5 main features)
 - Technical preferences (languages, frameworks, deployment)
 - Non-functional requirements (performance, security, scalability)
+
+Required Architectural Elements (define upfront):
+- System Components: All major modules/services and their purposes
+- Data Flow: How data moves through the entire system
+- Integration Points: All external APIs, services, databases
+- System Boundaries: What's in scope vs out of scope
+- Constraints: Technical, business, and resource limitations
+- Success Metrics: Clear, measurable goals for the system
 ```
 
-### 2. Generate Requirements Document
+### 3. Deliverable Definition (Set Upfront)
+
+Define all deliverables explicitly before starting documentation:
+
+```
+Standard Deliverables Package:
+1. Requirements Document
+   - User stories with measurable acceptance criteria
+   - Complete glossary of terms
+   - Traceable requirement IDs
+   
+2. System Design Document  
+   - Component architecture diagram
+   - Data flow diagrams for all major processes
+   - Integration point specifications
+   - API/Interface contracts
+   - Performance and scaling targets
+   
+3. Implementation Plan
+   - Hierarchical task breakdown
+   - Requirement-to-task mapping
+   - Dependency graph
+   - Phase-based delivery schedule
+
+Optional Deliverables (specify if needed):
+- API Documentation
+- Database Schema Design
+- Security Threat Model
+- Deployment Guide
+- Testing Strategy Document
+```
+
+### 4. Generate Requirements Document
 
 Use the requirements template to create user-focused specifications:
 
@@ -52,54 +125,101 @@ requirements = {
 }
 ```
 
-### 3. Generate Design Document
+### 5. Generate Design Document
 
-Create technical specifications based on requirements:
+Create technical specifications with explicit architectural elements:
 
 ```python
-# Execute this to generate design structure
+# Execute this to generate comprehensive design structure
 design = {
     "overview": "High-level system description",
     "architecture": {
-        "diagram": "ASCII or description of layers",
-        "components": ["Frontend", "Backend", "Database", "External Services"]
+        "diagram": "ASCII or visual representation of all components",
+        "components": [
+            {
+                "id": "COMP-1",
+                "name": "Component Name",
+                "type": "Frontend/Backend/Service/Database",
+                "responsibility": "Single clear purpose",
+                "boundaries": "What it does and doesn't do"
+            }
+        ]
     },
-    "components": [
+    "data_flow": {
+        "primary_flows": [
+            {
+                "name": "User Registration Flow",
+                "steps": [
+                    "1. User submits form → Frontend",
+                    "2. Frontend validates → API Gateway",
+                    "3. API Gateway → Auth Service",
+                    "4. Auth Service → User Database",
+                    "5. Response flows back"
+                ],
+                "data_transformations": "How data changes at each step"
+            }
+        ]
+    },
+    "integration_points": [
+        {
+            "name": "External Payment API",
+            "type": "REST/GraphQL/WebSocket/Database",
+            "purpose": "Process payments",
+            "interface": "API contract definition",
+            "authentication": "Method used",
+            "error_handling": "Retry/fallback strategy"
+        }
+    ],
+    "components_detail": [
         {
             "name": "Component Name",
             "responsibility": "What it does",
             "key_classes": ["Class descriptions"],
             "interfaces": "API/method signatures",
-            "data_flow": "How data moves through",
+            "dependencies": "What it needs to function",
             "performance": "Targets and constraints"
         }
     ],
-    "data_models": "Entity definitions",
+    "data_models": "Entity definitions with relationships",
+    "system_boundaries": {
+        "in_scope": ["What the system handles"],
+        "out_of_scope": ["What it delegates or ignores"],
+        "assumptions": ["External dependencies assumed available"]
+    },
     "error_handling": "Strategies for failures",
     "testing_strategy": "Unit, integration, performance",
     "deployment": "Docker, environment, configuration"
 }
 ```
 
-### 4. Generate Implementation Plan
+### 6. Generate Implementation Plan
 
-Break down the project into executable tasks:
+Break down the project into executable tasks with clear scope boundaries:
 
 ```python
-# Execute this to generate task structure
+# Execute this to generate task structure with boundaries
 tasks = {
+    "project_boundaries": {
+        "must_have": ["Core features for MVP"],
+        "nice_to_have": ["Enhancement features"],
+        "out_of_scope": ["Features explicitly excluded"],
+        "technical_constraints": ["Framework/library limitations"]
+    },
     "phases": [
         {
             "id": 1,
             "name": "Infrastructure Setup",
+            "deliverables": ["What this phase produces"],
             "tasks": [
                 {
                     "id": "1.1",
                     "description": "Task description",
                     "subtasks": ["Specific actions"],
                     "requirements_fulfilled": ["REQ-1.1", "REQ-2.3"],
+                    "components_involved": ["COMP-1", "COMP-3"],
                     "dependencies": [],
-                    "estimated_hours": 4
+                    "estimated_hours": 4,
+                    "success_criteria": "How to verify completion"
                 }
             ]
         }
@@ -179,15 +299,79 @@ Data criteria:
 
 [System architecture summary in 3-4 sentences. Key design decisions and priorities.]
 
-## Architecture
+## System Architecture
 
-### High-Level Architecture
+### Component Map
 
-[ASCII diagram showing major components and data flow]
+| Component ID | Name | Type | Responsibility | Interfaces With |
+|-------------|------|------|----------------|-----------------|
+| COMP-1 | Web Frontend | UI | User interface | COMP-2 |
+| COMP-2 | API Gateway | Service | Request routing | COMP-3, COMP-4 |
+| COMP-3 | Business Logic | Service | Core processing | COMP-5 |
+[Complete component inventory]
 
-### Component Interaction Flow
+### High-Level Architecture Diagram
 
-[Sequence or flow description]
+[ASCII diagram showing all components and their relationships]
+
+## Data Flow Specifications
+
+### Primary Data Flows
+
+#### 1. [Flow Name] (e.g., User Authentication)
+
+```
+1. [Source] → [Component]: [Data description]
+2. [Component] → [Component]: [Transformation applied]
+3. [Component] → [Destination]: [Final data format]
+```
+
+**Data Transformations:**
+- Step 2: [How data changes]
+- Step 3: [Validation/Processing applied]
+
+[Repeat for each major data flow]
+
+## Integration Points
+
+### Internal Integration Points
+
+| Source | Target | Protocol | Data Format | Purpose |
+|--------|--------|----------|-------------|---------|
+| Frontend | API Gateway | HTTPS/REST | JSON | API calls |
+| API Gateway | Auth Service | gRPC | Protobuf | Authentication |
+[All internal integrations]
+
+### External Integration Points
+
+#### [External System Name]
+
+**Type:** REST API / Database / Message Queue / etc.
+**Purpose:** [What this integration provides]
+**Endpoint:** [URL/Connection string pattern]
+**Authentication:** [Method - OAuth2, API Key, etc.]
+**Rate Limits:** [Any constraints]
+
+**Interface Contract:**
+```language
+// Request format
+POST /api/endpoint
+{
+    "field": "type"
+}
+
+// Response format  
+{
+    "result": "type"
+}
+```
+
+**Error Handling:**
+- Retry strategy: [Exponential backoff, circuit breaker]
+- Fallback: [What happens if unavailable]
+- Monitoring: [How to detect issues]
+
+[Repeat for each external integration]
 
 ## Components and Interfaces
 
@@ -540,7 +724,49 @@ Before finalizing documents, verify:
 
 ## Example Usage Patterns
 
-### Starting a New Project
+### Starting a New Project (With Explicit Architecture Focus)
+
+```
+User: "I want to build an order flow trading automation system"
+
+Response: "I'll act as your Project Architect to create comprehensive planning documents. 
+
+First, let me establish the architectural foundation:
+
+**System Components I need to define:**
+- Market data ingestion service
+- Order flow analysis engine  
+- Trading signal generator
+- Risk management module
+- Order execution service
+- Monitoring dashboard
+
+**Data Flows to map:**
+- Market data → Analysis → Signals → Execution
+- Position tracking → Risk calculation → Trading limits
+- All events → Audit trail
+
+**Integration Points to specify:**
+- Exchange APIs (which ones?)
+- Database system (time-series data needs?)
+- Notification services (alerts/reporting?)
+
+**Key Questions:**
+1. Is this for personal use (single-user) or a platform (multi-user)?
+2. Which specific exchanges/brokers will it connect to?
+3. What are your latency requirements (milliseconds matter)?
+4. What's your risk tolerance and position sizing approach?
+5. Do you need backtesting capabilities?
+
+**Deliverables I'll create:**
+1. Requirements document with traceable user stories
+2. System design with complete component map and data flows
+3. Implementation plan with phased delivery milestones
+
+This architectural blueprint will ensure nothing is overlooked during implementation."
+```
+
+### Starting a New Project (Simple Approach)
 
 ```
 User: "I want to build an order flow trading automation system"
@@ -577,14 +803,25 @@ Response: "I'll add dashboard requirements to your document:
 
 ## Common Pitfalls to Avoid
 
+### Planning Pitfalls
+1. **Skipping architectural planning** - Jumping to requirements without mapping components first
+2. **Vague role definition** - Not establishing the architect role leads to unfocused documentation
+3. **Hidden integration points** - Discovering external dependencies during implementation
+4. **Undefined boundaries** - No clear scope leads to feature creep and timeline slippage
+5. **Missing data flow analysis** - Not mapping how data moves reveals issues late
+
+### Requirements Pitfalls
 1. **Over-specifying implementation** - Requirements should define "what" not "how"
 2. **Vague acceptance criteria** - Avoid "user-friendly" or "fast" without metrics
 3. **Missing error cases** - Include failure scenarios in requirements
-4. **Circular dependencies** - Ensure task dependencies form a DAG
-5. **Untraceable requirements** - Every requirement should map to tasks
-6. **Monolithic components** - Break down large components into focused services
-7. **Missing data models** - Define core entities early
-8. **Ignoring deployment** - Include Docker/deployment from the start
+4. **Untraceable requirements** - Every requirement should map to tasks
+
+### Design Pitfalls
+1. **Monolithic components** - Break down large components into focused services
+2. **Circular dependencies** - Ensure task dependencies form a DAG
+3. **Missing data models** - Define core entities early
+4. **Ignoring deployment** - Include Docker/deployment from the start
+5. **Unclear component boundaries** - Each component needs explicit responsibilities
 
 ## Output Format
 
