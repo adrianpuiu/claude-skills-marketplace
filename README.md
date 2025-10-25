@@ -1,3 +1,8 @@
+GUYS: i suggest you to check this repository ->  https://github.com/adrianpuiu/specification-document-generator
+not only it might be better but the second branch https://github.com/adrianpuiu/specification-document-generator/tree/feature/enhanced-skill-with-real-time-research 
+has an included research step way before wrting the docs 
+
+
 # Project Planner Skill
 
 A comprehensive skill that establishes Claude as a **Project Architect** to generate detailed planning documents that serve as blueprints for AI-assisted software development.
