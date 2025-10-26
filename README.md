@@ -1,9 +1,11 @@
-# GUYS: i suggest you to check this repository ->  https://github.com/adrianpuiu/specification-document-generator
-# not only it might be better but the second branch https://github.com/adrianpuiu/specification-document-generator/tree/feature/enhanced-skill-with-real-time-research 
-# has an included research step way before wrting the docs 
+# FYI : I suggest you to check this repository for spec docs on steroids skill->  https://github.com/adrianpuiu/specification-document-generator
+#  
 
 
-# Project Planner Skill
+
+
+
+# Project Planner Skill - will be deleted , it's obsolete and will be replaced by ->  https://github.com/adrianpuiu/specification-document-generator
 
 A comprehensive skill that establishes Claude as a **Project Architect** to generate detailed planning documents that serve as blueprints for AI-assisted software development.
 
